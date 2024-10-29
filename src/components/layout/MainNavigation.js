@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import { useFavorites } from "../../context/FavoritesContext";
 import classes from "./MainNavigation.module.css";
 
 export default function MainNavigation() {
   const [hideHeader, setHideHeader] = useState(false);
   const [scroll, setScroll] = useState(false);
+
+  const { favorites } = useFavorites();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,7 +46,7 @@ export default function MainNavigation() {
           <li>
             <Link to="/favorites">
               My Favorites
-              <span className={classes.badge}>{0}</span>
+              <span className={classes.badge}>{favorites.length}</span>
             </Link>
           </li>
         </ul>
